@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/black"
-    tools:context=".ResultFragment">
+    tools:context=".fragment.ResultFragment">
 
     <TextView
         android:id="@+id/tv_name1"

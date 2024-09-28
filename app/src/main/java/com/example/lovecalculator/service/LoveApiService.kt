@@ -1,5 +1,6 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.service
 
+import com.example.lovecalculator.Model.LoveModel
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header

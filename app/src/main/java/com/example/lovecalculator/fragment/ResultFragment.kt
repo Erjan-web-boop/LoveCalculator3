@@ -1,31 +1,35 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.fragment
+
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.util.Log
 import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
-import com.example.lovecalculator.databinding.FragmentLoveBinding
+import com.example.lovecalculator.Model.LoveModel
+import com.example.lovecalculator.R
+import com.example.lovecalculator.contract.ResultContract
+import com.example.lovecalculator.presenter.ResultPresenter
 import com.example.lovecalculator.databinding.FragmentResultBinding
 
-
-class ResultFragment : Fragment() {
-
+class ResultFragment : Fragment(), ResultContract.View {
     private lateinit var binding: FragmentResultBinding
+    private lateinit var presenter: ResultContract.Presenter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentResultBinding.inflate(inflater, container, false)
+        binding = FragmentResultBinding.inflate(layoutInflater)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        presenter = ResultPresenter(this)
         Data()
         initListener()
     }
@@ -43,19 +47,18 @@ class ResultFragment : Fragment() {
 
     private fun initListener() {
         binding.btnTryAgain.setOnClickListener {
-            navigateToCalculation()
+            presenter.TryAgain()
         }
     }
 
-    private fun showData(loveModel: LoveModel) = with(binding) {
+    override fun showData(loveModel: LoveModel) = with(binding) {
         tvName1.text = loveModel.firstName
         tvName2.text = loveModel.secondName
         tvPercent.text = loveModel.percentage
         tvResult.text = loveModel.result
     }
 
-    private fun navigateToCalculation() {
+    override fun navigateToCalculation() {
         findNavController().navigate(R.id.loveFragment)
     }
-
 }

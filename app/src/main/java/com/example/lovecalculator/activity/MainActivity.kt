@@ -1,10 +1,11 @@
-package com.example.lovecalculator
+package com.example.lovecalculator.activity
 
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.example.lovecalculator.R
 import com.example.lovecalculator.databinding.ActivityMainBinding
 
 
